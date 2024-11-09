@@ -45,13 +45,55 @@ The radar plot in Figure 1 of the main paper shows that our proposed Dog-IQA out
 
 * [ ] Release code
 
+## <a name="dependencies"></a>📦 Dependencies
+
+- Python 3.10
+- PyTorch 2.4.1+cu121
+
+```bash
+# Clone the github repo and go to the default directory 'BI-DiffSR'.
+git clone https://github.com/Kai-Liu001/Dog-IQA.git
+conda create -n dogiqa python=3.10
+conda activate dogiqa
+cd Dog-IQA
+pip install -r requirements.txt -f https://download.pytorch.org/whl/torch_stable.html
+git clone https://github.com/facebookresearch/sam2.git
+cd segment-anything-2/sam2
+pip install -e .
+```
+
 ## 🔗 Contents
 
-1. Datasets
-2. Evaluation
-3. [Results](#-results)
-4. [Citation](#-citation)
-4. [Acknowledgements](#-acknowledgements)
+1. [Dependencies](#-dependencies)
+2. [Datasets](#-datasets)
+3. [Evaluation](#-evaluation)
+4. [Results](#-results)
+5. [Citation](#-citation)
+6. [Acknowledgements](#-acknowledgements)
+
+## <a name="datasets"></a>📑 Datasets
+
+Used testing sets can be downloaded as follows:
+
+| Testing Set | Download Link |
+|---------|---------|
+| [SPAQ](https://github.com/h4nwei/SPAQ) (10k smartphone photography) + [LIVEC](https://live.ece.utexas.edu/research/ChallengeDB/index.html) (1k in-the-wild images) + [KonIQ](https://github.com/subpic/koniq) (10k in-the-wild images) + [AGIQA](https://github.com/lcysyzxdxc/AGIQA-3k-Database) (3k AI-generated images) + [KADID](https://database.mmsp-kn.de/kadid-10k-database.html) (10k artificially distorted​ images) |[Google Drive]() / [Baidu Disk]()|
+
+Download testing datasets and put them into the corresponding folders of `datasets/`.
+
+## <a name="evaluation"></a>🎯 Evaluation
+
+- Download the pre-trained mPLUG-Owl3 from [ModelScope](https://modelscope.cn/models/iic/mPLUG-Owl3-7B-240728) or [Huggingface](https://huggingface.co/mPLUG/mPLUG-Owl3-7B-240728).
+
+- Download testing datasets from [Google drive]() or [Baidu Drive]() and place them in `datasets/`.
+
+- Run the following script to test Dog-IQA on SPAQ. More scripts on other datasets can be found in `scripts/`
+
+```bash
+sh eval-spaq.sh
+```
+  
+- The output is in `results/`.
 
 ## <a name="results"></a>🔎 Results
 
