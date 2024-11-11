@@ -43,7 +43,7 @@ The radar plot in Figure 1 of the main paper shows that our proposed Dog-IQA out
 
 ## ⚒ TODO
 
-* [ ] Release code
+* [x] Release code
 
 ## <a name="dependencies"></a>📦 Dependencies
 
@@ -51,14 +51,14 @@ The radar plot in Figure 1 of the main paper shows that our proposed Dog-IQA out
 - PyTorch 2.4.1+cu121
 
 ```bash
-# Clone the github repo and go to the default directory 'BI-DiffSR'.
+# Clone the github repo and go to the default directory 'Dog-IQA'.
 git clone https://github.com/Kai-Liu001/Dog-IQA.git
 conda create -n dogiqa python=3.10
 conda activate dogiqa
 cd Dog-IQA
 pip install -r requirements.txt -f https://download.pytorch.org/whl/torch_stable.html
 git clone https://github.com/facebookresearch/sam2.git
-cd segment-anything-2/sam2
+cd segment-anything-2
 pip install -e .
 ```
 
@@ -85,12 +85,18 @@ Download testing datasets and put them into the corresponding folders of `datase
 
 - Download the pre-trained mPLUG-Owl3 from [ModelScope](https://modelscope.cn/models/iic/mPLUG-Owl3-7B-240728) or [Huggingface](https://huggingface.co/mPLUG/mPLUG-Owl3-7B-240728).
 
-- Download testing datasets from [Google drive]() or [Baidu Drive]() and place them in `datasets/`.
-
-- Run the following script to test Dog-IQA on SPAQ. More scripts on other datasets can be found in `scripts/`
+- Download the pre-trained SAM2 by running the following script:
 
 ```bash
-sh eval-spaq.sh
+sh segment-anything-2/checkpionts/download_ckpts.sh
+```
+
+- Download testing datasets from [Google drive]() or [Baidu Drive]() and place them in `datasets/`.
+
+- Run the following script to test Dog-IQA on SPAQ. More scripts can be found in `scripts/test.sh`
+
+```bash
+python dogiqa/eval.py --dataset spaq 
 ```
   
 - The output is in `results/`.
